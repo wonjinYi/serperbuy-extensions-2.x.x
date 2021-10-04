@@ -1,0 +1,42 @@
+{
+    "name": "Serperbuy",
+    "description": "Unofficial Superb AI Suite third-party tool (Support Superb AI Suite v1.10.0 and later)",
+    "version": "2.0.0",
+    "manifest_version": 3,
+    "permissions" : [
+        "storage"
+    ],
+    "background": {
+
+    },
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "32": "icon32.png",
+            "48": "icon48.png"
+        }
+    },
+    "icons": {
+        "32": "icon32.png",
+        "48": "icon48.png"
+    },
+    "content_scripts" : [
+        {
+            "matches":["https://suite-anno-v2.superb-ai.com/*"],
+            "js":["contentScript.js"],
+            "all_frames" : true
+        }
+    ],
+    "web_accessible_resources": [ 
+        {
+            "resources": [ 
+                "main.js",
+                "libraries/*",
+                "modules/*",
+                "tools/*"
+            ],
+            "matches": ["https://suite-anno-v2.superb-ai.com/*"]
+        }
+    ]
+
+}

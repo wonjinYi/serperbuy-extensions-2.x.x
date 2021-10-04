@@ -1,0 +1,5 @@
+const GinPixel = () => {
+    
+}
+
+export { GinPixel };

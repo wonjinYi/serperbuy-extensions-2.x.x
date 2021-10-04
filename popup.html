@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!--<link rel="stylesheet" href="button.css">-->
+    <style>
+        :root{
+            --serperbPink : #FA6158;
+            --serperbPinkAlpha : #FA615850;
+
+            --serperbGrey : #333333;
+        }
+    
+        body {
+            width: 600px;
+            background-color : var(--serperbGrey);
+            color : white;
+        }
+
+        button {
+            height: 30px;
+            width: 100px;
+            outline: none;
+            margin: 10px;
+            border: none;
+            border-radius: 2px;
+        }
+
+        button.current {
+            box-shadow: 0 0 0 2px white,
+                0 0 0 4px black;
+        }
+        ul { list-style: none; padding-left: 0px; }
+        .module-title {
+           
+            border-bottom : 1px solid #ffffff80;
+        }
+
+        .key {
+            border : 1px solid var(--serperbPink);
+            background-color : var(--serperbPinkAlpha);
+            padding : 2px 4px;
+            margin-right : 4px;
+            margin-bottom : 2px;
+            display : inline-block;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header style="display:flex; align-items:center;">
+        <div><img src="icon32.png" alt="serperbuy icon" style="display:block;"></div>
+        <div style="display:flex; align-items:flex-end;">
+            <h1 style="margin:0; padding:4px;">Serperbuy</h1>
+            <p style="color:grey"><b>ver 2.0.0 (2021/10/00)</b></p>
+        </div>
+        
+    </header>
+
+    <main style="margin-left:24px;">
+        <p style="color:grey">Serperbuy is a Unofficial third party tool not related to Superb AI, inc.</p>
+        <div>
+            <h1 class="module-title">Pixel Size Checker</h1>
+            <ul>
+                <li>
+                    <span class="key">Shift + X</span>
+                    Change checking size
+                    </li>
+                <li>
+                    <span class="key">Ctrl + Shift + X</span> 
+                    Change Color(Black/White)
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <footer style="display:flex; align-items:center; justify-content: center;">
+        <div style="flex:1; border-bottom:1px solid grey;"></div>
+        <p style="color:grey; margin:4px 12px;">goranimaster17@gmail.com</p>
+        <div style="flex:1; border-bottom:1px solid grey;"></div>
+    </footer>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>
