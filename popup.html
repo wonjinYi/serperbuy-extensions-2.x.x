@@ -8,7 +8,6 @@
         :root{
             --serperbPink : #FA6158;
             --serperbPinkAlpha : #FA615850;
-
             --serperbGrey : #333333;
         }
     
@@ -18,23 +17,36 @@
             color : white;
         }
 
-        button {
+        .serperb-btn-theme {
             height: 30px;
             width: 100px;
             outline: none;
-            margin: 10px;
             border: none;
+            margin: 10px;
+            font-size : 1.1em;
+            color : white;
             border-radius: 2px;
+            background-color : var(--serperbPink);
+
+            transition : background-color 0.1s;
+        }
+        .serperb-btn-theme:hover {
+            background-color : var(--serperbPinkAlpha);
         }
 
-        button.current {
-            box-shadow: 0 0 0 2px white,
-                0 0 0 4px black;
+        ul { 
+            list-style: none; 
+            padding-left: 0px; 
         }
-        ul { list-style: none; padding-left: 0px; }
         .module-title {
-           
+            display : flex;
+            align-items : flex-end;
             border-bottom : 1px solid #ffffff80;
+        }
+        .module-title-text {
+            margin-bottom : 0px;
+            margin-right : auto;
+            
         }
 
         .key {
@@ -62,7 +74,10 @@
     <main style="margin-left:24px;">
         <p style="color:grey">Serperbuy is a Unofficial third party tool not related to Superb AI, inc.</p>
         <div>
-            <h1 class="module-title">Pixel Size Checker</h1>
+            <div class="module-title">
+                <h1 class="module-title-text">Pixel Size Checker</h1>
+                <button id="send" class="serperb-btn-theme">Setting</button>
+            </div>
             <ul>
                 <li>
                     <span class="key">Shift + X</span>
@@ -74,6 +89,7 @@
                 </li>
             </ul>
         </div>
+        
     </main>
 
     <footer style="display:flex; align-items:center; justify-content: center;">
