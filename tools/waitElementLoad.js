@@ -5,8 +5,9 @@ import { getElementByXpath } from './getElementByXpath.js';
 // elementXpath : 획득할 엘리먼트의 XPath
 // callback : 어떤 엘리먼트를 획득하면 실행할 함수
 
-const isElementLoaded = ({ maxWaitTime, findInterval, elementXpath, callback }) => {
+const waitElementLoad = ({ maxWaitTime, findInterval, elementXpath, callback }) => {
     let cnt = parseInt(maxWaitTime / findInterval);
+    const findInterval_ms = findInterval * 1000
 
     const interval = setInterval(() => {
         const el = getElementByXpath(elementXpath);
@@ -19,8 +20,8 @@ const isElementLoaded = ({ maxWaitTime, findInterval, elementXpath, callback }) 
                 clearInterval(interval);
             }
         }
-    }, findInterval)
+    }, findInterval_ms)
 
 }
 
-export { isElementLoaded };
+export { waitElementLoad };
