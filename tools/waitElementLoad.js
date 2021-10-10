@@ -6,21 +6,31 @@ import { getElementByXpath } from './getElementByXpath.js';
 // callback : 어떤 엘리먼트를 획득하면 실행할 함수
 
 const waitElementLoad = ({ maxWaitTime, findInterval, elementXpath, callback }) => {
+    //let intervalId = null;
+
     let cnt = parseInt(maxWaitTime / findInterval);
     const findInterval_ms = findInterval * 1000
 
-    const interval = setInterval(() => {
-        const el = getElementByXpath(elementXpath);
-        if (el) {
-            callback();
-            clearInterval(interval);
-        } else {
-            cnt--;
-            if (cnt <= 0) {
-                clearInterval(interval);
+    const intervalId = setInterval(() => {
+        try {
+            const el = getElementByXpath(elementXpath);
+            if (el) {
+                clearInterval(intervalId);
+                callback();
+            } else {
+                cnt--;
+                if (cnt <= 0) {
+                    clearInterval(intervalId);
+                    console.error('[waitElementLoad]can not find element : ', elementXpath);
+                }
             }
+        } catch (err) {
+            clearInterval(intervalId);
+            console.error('[waitElementLoad]error occured : ', err);
         }
     }, findInterval_ms)
+
+
 
 }
 

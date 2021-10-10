@@ -3,65 +3,15 @@
 
 <head>
     <meta charset="utf-8">
-    <!--<link rel="stylesheet" href="button.css">-->
-    <style>
-        :root{
-            --serperbPink : #FA6158;
-            --serperbPinkAlpha : #FA615850;
-            --serperbGrey : #333333;
-        }
-    
-        body {
-            width: 600px;
-            background-color : var(--serperbGrey);
-            color : white;
-        }
-
-        .serperb-btn-theme {
-            height: 30px;
-            width: 100px;
-            outline: none;
-            border: none;
-            margin: 10px;
-            font-size : 1.1em;
-            color : white;
-            border-radius: 2px;
-            background-color : var(--serperbPink);
-
-            transition : background-color 0.1s;
-        }
-        .serperb-btn-theme:hover {
-            background-color : var(--serperbPinkAlpha);
-        }
-
-        ul { 
-            list-style: none; 
-            padding-left: 0px; 
-        }
-        .module-title {
-            display : flex;
-            align-items : flex-end;
-            border-bottom : 1px solid #ffffff80;
-        }
-        .module-title-text {
-            margin-bottom : 0px;
-            margin-right : auto;
-            
-        }
-
-        .key {
-            border : 1px solid var(--serperbPink);
-            background-color : var(--serperbPinkAlpha);
-            padding : 2px 4px;
-            margin-right : 4px;
-            margin-bottom : 2px;
-            display : inline-block;
-        }
-
-    </style>
+    <link rel="stylesheet" href="./styles/contents.css">
+    <link rel="stylesheet" href="./styles/switch.css">
+    <link rel="stylesheet" href="./styles/loading.css">
+    <link rel="stylesheet" href="./styles/disablePage.css">
+    <link rel="stylesheet" href="./styles/settings.css">
 </head>
 
 <body>
+    <!-- Contents Section Start -->
     <header style="display:flex; align-items:center;">
         <div><img src="icon32.png" alt="serperbuy icon" style="display:block;"></div>
         <div style="display:flex; align-items:flex-end;">
@@ -72,24 +22,46 @@
     </header>
 
     <main style="margin-left:24px;">
-        <p style="color:grey">Serperbuy is a Unofficial third party tool not related to Superb AI, inc.</p>
+        <p style="color:grey">Serperbuy는 Superb AI Suite사용자가 만든 도구로, Superb AI, inc.와는 어떠한 관련도 없습니다.</p>
+        
+        <!-- User Guide Section Start -->
         <div>
             <div class="module-title">
-                <h1 class="module-title-text">Pixel Size Checker</h1>
-                <button id="send" class="serperb-btn-theme">Setting</button>
+                <h1 class="module-title-text">크기 측정기</h1>
+                <label class="switch">
+                    <input type="checkbox" id="switch-GinPixel" name="GinPixel">
+                    <span class="slider"></span>
+                </label>
+                <button id="setting-open-GinPixel" class="serperb-btn-theme" name="GinPixel">설정</button>
             </div>
             <ul>
                 <li>
                     <span class="key">Shift + X</span>
-                    Change checking size
+                    측정 크기 변경
                     </li>
                 <li>
                     <span class="key">Ctrl + Shift + X</span> 
-                    Change Color(Black/White)
+                    색상 변경(흑/백)
                 </li>
             </ul>
         </div>
-        
+        <div>
+            <div class="module-title">
+                <h1 class="module-title-text">그룹 선택기</h1>
+                <label class="switch">
+                    <input type="checkbox" id="switch-Excavator" name="Excavator">
+                    <span class="slider"></span>
+                </label>
+                <button id="setting-open-Excavator" class="serperb-btn-theme" name="Excavator">설정</button>
+            </div>
+            <ul>
+                <li>
+                    <span class="key">Click</span>
+                    클릭한 그룹 내의 모든 어노테이션 선택
+                </li>
+            </ul>
+        </div>
+        <!-- User Guide Section End -->
     </main>
 
     <footer style="display:flex; align-items:center; justify-content: center;">
@@ -97,8 +69,45 @@
         <p style="color:grey; margin:4px 12px;">goranimaster17@gmail.com</p>
         <div style="flex:1; border-bottom:1px solid grey;"></div>
     </footer>
+    <!-- Contents Section End -->
 
-    <script src="popup.js"></script>
+    <!-- Overlay Section Start -->
+
+    <div id="settings">
+        <div class="settings-contents" name="GinPixel">
+            <h2>크기 측정기 설정</h2>
+            <div class="settings-sub-contents">
+                <h3>측정 크기 목록</h3>
+                <p>측정하실 크기를 순서대로 콤마(,)로 구분하여 입력해주세요 ( 0은 표시하지 않음을 의미합니다 )</p>
+                <input id="settings-GinPixel-input-sizeCheckList" type="text" placeholder="(예시) 0, 10, 200" width="100px">
+            </div>
+            <div class="settings-sub-contents">
+                <h3>측정대상 이미지 크기</h3>
+                <p>크기를 재고자 하는 이미지의 원본 크기를 입력해주세요.</p>
+                <input id="settings-GinPixel-input-imageSize-width" type="text" placeholder="가로길이">
+                <span>X</span>
+                <input id="settings-GinPixel-input-imageSize-height" type="text" placeholder="세로길이">
+            </div>
+        </div>
+        <div style="padding:8px;">
+            <button id="settings-close-withoutChange" class="settings-btn">취소</button>
+            <button id="settings-close" class="settings-btn">저장하고 닫기</button>
+        </div>
+    </div>
+
+    <div id="disable-page">
+        <h2>현재 페이지에서는 사용할 수 없습니다</h2>
+        <p>Superb AI Suite의 Reivew Mode 또는 Labeling Mode가 감지되지 않았습니다</p>
+    </div>
+
+    <div id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Overlay Section End -->
+
+
+    <script src="popup.js" type="module"></script>
 </body>
 
 </html>

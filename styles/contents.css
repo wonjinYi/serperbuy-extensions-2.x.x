@@ -1,0 +1,62 @@
+@import url('./serperbuyColor.css');
+
+body {
+    width: 600px;
+    box-sizing: border-box;
+    background-color : var(--serperbGrey);
+    color : white;
+}
+
+.serperb-btn-theme {
+    height: 32px;
+    width: 64px;
+    
+    padding : 0;
+    margin: 8px;
+
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    background-color : var(--serperbPink);
+    color : white;
+    font-size : 1.1em;
+    cursor : pointer;
+    transition : background-color 0.1s;
+}
+.serperb-btn-theme:hover {
+    background-color : var(--serperbPinkAlpha);
+    
+}
+.serperb-btn-theme-disabled {
+    background-color : var(--serperbPinkAlpha);
+    color : var(--serperbGrey);
+    cursor : not-allowed;
+}
+
+
+ul { 
+    padding-left: 0px; 
+    list-style: none;
+}
+.module-title {
+    display : flex;
+    align-items : flex-end;
+
+    border-bottom : 1px solid #ffffff80;
+}
+.module-title-text {
+    margin-bottom : 0px;
+    margin-right : auto;   
+}
+
+
+.key {
+    display : inline-block;
+    
+    padding : 2px 4px;
+    margin-right : 4px;
+    margin-bottom : 2px;
+    
+    border : 1px solid var(--serperbPink);
+    background-color : var(--serperbPinkAlpha);
+}

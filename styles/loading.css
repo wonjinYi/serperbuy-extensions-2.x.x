@@ -1,0 +1,31 @@
+@import url('./styles/serperbuyColor.css');
+
+#loading {
+    display : flex;
+    justify-content: center;
+    align-items : center;
+
+    position : absolute;
+    top : 0px;
+    left : 0px;
+
+    width : 616px;
+    height : 100%;
+    
+    background-color : var(--backdropBlack);
+}
+
+@keyframes spinner {
+    from {transform: rotate(0deg); }
+    to {transform: rotate(360deg);}
+  }
+
+.spinner{
+    width: 64px;
+    height: 64px;
+
+    border-radius: 50%;
+    border: 4px solid lightgrey;
+    border-top-color: var(--serperbPink);
+    animation: spinner .8s linear infinite;
+}

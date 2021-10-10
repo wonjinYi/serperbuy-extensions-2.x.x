@@ -1,0 +1,65 @@
+@import url('./serperbuyColor.css');
+
+#settings {
+    visibility: hidden;
+
+    /*display : flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items : center;
+*/
+
+    
+    position : absolute;
+    top : 0px;
+    left : 0px;
+
+    padding : 8px;
+    width : 616px;
+    height : 100%;
+    
+    background-color : var(--backdropBlack);
+}
+
+.settings-btn {
+    height: 32px;
+    
+    padding : 0px 16px;
+    margin-right : 4px;
+
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    background-color : white;
+    color : black;
+    font-size : 1.1em;
+    
+    transition : background-color 0.1s;
+}
+.settings-btn:hover {
+    background-color : grey;
+    cursor : pointer;
+}
+
+.settings-contents {
+    
+}
+
+.settings-contents h2 {
+    display : inline-block;
+}
+
+
+.settings-sub-contents {
+    padding : 16px;
+}
+
+.settings-sub-contents h3,p {
+    margin : 0;
+}
+
+.settings-sub-contents input {
+    margin : 4px;
+    height : 24px;
+    font-size : 16px;
+}
