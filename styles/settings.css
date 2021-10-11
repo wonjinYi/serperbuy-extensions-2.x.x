@@ -42,13 +42,17 @@
 }
 
 .settings-contents {
-    
+    display : none;
 }
 
 .settings-contents h2 {
     display : inline-block;
+
 }
 
+.settings-contents-visible {
+    display:block;
+}
 
 .settings-sub-contents {
     padding : 16px;

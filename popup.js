@@ -4,12 +4,12 @@ import { store_GinPixel } from "./storeList.js";
 // DOM elemetns
 const $settingBtn = {
     GinPixel: document.getElementById('setting-open-GinPixel'),
-    Excavator: document.getElementById('setting-open-Excavator'),
+    ForkLane: document.getElementById('setting-open-ForkLane'),
 };
 
 const $switchBtn = {
     GinPixel: document.getElementById('switch-GinPixel'),
-    Excavator: document.getElementById('switch-Excavator'),
+    ForkLane: document.getElementById('switch-ForkLane'),
 };
 
 const $loading = document.getElementById('loading');
@@ -33,11 +33,40 @@ const sendMessageToContentScript = ({ data, callback }) => {
 };
 
 const handleSettingBtnClick = (e) => {
-    loading(true);
-    const targetModule = e.target.name
+    //declare shared variables.
+    let targetModule = null;
+    let targetModuleSettingsContents = null;
 
-    $settingsCloseWithoutChangeBtn.onclick = settingsClose;
-    $settings.style.visibility = 'visible';
+    //declare functions
+    const settingsClose = (e) => {
+        $settings.style.visibility = 'hidden';
+        $settingsCloseBtn.onclick = null;
+        $settingsCloseWithoutChangeBtn.onclick = null;
+
+        targetModuleSettingsContents.classList.remove('settings-contents-visible');
+    }
+
+    const init = () => {
+        loading(true);
+
+        targetModule = e.target.name;
+        
+        const $settingsContents = $settings.getElementsByClassName('settings-contents');
+        for(let i=0; i<$settingsContents.length; i++){
+            const el = $settingsContents[i];
+            if(el.getAttribute('name') === targetModule){
+                targetModuleSettingsContents = el;
+                targetModuleSettingsContents.classList.add('settings-contents-visible');
+            }
+        }
+
+        $settingsCloseWithoutChangeBtn.onclick = settingsClose;
+        $settings.style.visibility = 'visible';
+    }
+    
+
+    // run
+    init();
 
     if (targetModule === 'GinPixel') {
         const $chklist = document.getElementById('settings-GinPixel-input-sizeCheckList');
@@ -87,14 +116,11 @@ const handleSettingBtnClick = (e) => {
                 alert('잘못된 값이 입력되었습니다');
             }
         }
+    } else if (targetModule === 'ForkLane') {
+        loading(false);
+        $settingsCloseBtn.onclick = settingsClose;
     }
 };
-
-const settingsClose = (e) => {
-    $settings.style.visibility = 'hidden';
-    $settingsCloseBtn.onclick = null;
-    $settingsCloseWithoutChangeBtn.onclick = null;
-}
 
 const enableSettingBtn = (el) => {
     el.disabled = false;
@@ -107,7 +133,6 @@ const disableSettingBtn = (el) => {
 }
 
 const main = () => {
-
     const handleSwitchClick = (e) => {
         loading(true);
 
@@ -120,22 +145,33 @@ const main = () => {
             disableSettingBtn($settingBtn[targetModule]);
         }
 
-        sendMessageToContentScript({
-            data: {
-                targetModule,
-                action: isEnabled ? 'enable' : 'disable',
-            }, callback: (res) => {
-                if (res) {
-                    console.log(res.farewell);
-                    setTimeout(() => loading(false), 1000);
+        
+            sendMessageToContentScript({
+                data: {
+                    targetModule,
+                    action: isEnabled ? 'enable' : 'disable',
+                }, callback: (res) => {
+                    try{
+                        if (res) {
+                            console.log(res.farewell)
+                            setTimeout(() => loading(false), 1000);
+                        }
+                    } catch (err) {
+                            alert('퀘에엑')
+                    }
+                    
                 }
-            }
-        })
+            })
+        
+        
     }
 
-    $switchBtn.GinPixel.onclick = handleSwitchClick;
-    $switchBtn.Excavator.onclick = handleSwitchClick;
-    $settingBtn.GinPixel.onclick = handleSettingBtnClick;
+    Object.keys($switchBtn).forEach( key => {
+        $switchBtn[key].onclick = handleSwitchClick
+    });
+    Object.keys($settingBtn).forEach( key => {
+        $settingBtn[key].onclick = handleSettingBtnClick
+    });
 };
 
 
@@ -161,6 +197,9 @@ const loading = (isLoading) => {
 
     return visibility;
 };
+
+
+////////////////
 
 sendMessageToContentScript({
     data: {

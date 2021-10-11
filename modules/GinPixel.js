@@ -2,6 +2,7 @@ import { goraniStore } from '../libraries/goraniStore/src/goraniStore.js';
 import { store_GinPixel } from '../storeList.js';
 
 import { waitElementLoad } from '../tools/waitElementLoad.js';
+import { repeatUntilBreak } from '../tools/repeatUntilBreak.js';
 import { getElementByXpath } from '../tools/getElementByXpath.js';
 import { removeElement } from '../tools/removeElement.js';
 
@@ -17,7 +18,7 @@ const XPathList = {
         view: '/html/body/div[1]/div[1]/div[1]/div/div[2]/div[3]/div[2]/div',
         edit: '/html/body/div[1]/div[1]/div[1]/div/div[2]/div[3]/div[3]/div',
     },
-    zoomDropdown : '/html/body/div[3]/div',
+    zoomDropdown: '/html/body/div[3]/div',
     fitscreenBtn: '/html/body/div[1]/div[1]/div[1]/div/div[2]/div[3]/span/button',
 };
 
@@ -166,15 +167,15 @@ const GinPixel = () => {
 
     const handleClickZoomCombobox = (e) => {
         waitElementLoad({
-            maxWaitTime : 3,
-            findInterval : 0.5,
-            elementXpath : XPathList.zoomDropdown,
-            callback : () => {
+            maxWaitTime: 3,
+            findInterval: 0.5,
+            elementXpath: XPathList.zoomDropdown,
+            callback: () => {
                 const zoomDropdown = getElementByXpath(XPathList.zoomDropdown);
                 zoomDropdown.addEventListener('click', handleZoomInputChange);
 
                 const handleEnd = (e) => {
-                    if(e.target != zoomCombobox && e.target != zoomPercentageInput){
+                    if (e.target != zoomCombobox && e.target != zoomPercentageInput) {
                         zoomDropdown.removeEventListener('click', handleZoomInputChange);
                         window.removeEventListener('click', handleEnd);
                     }
@@ -266,8 +267,7 @@ const GinPixel = () => {
 
     // below are called from popup.js
     const disable = () => {
-        const removeSuccess = removeElement(container);
-        if (removeSuccess) {
+        const removeListener = () => {
             window.removeEventListener('keyup', handleKeyup);
             window.removeEventListener('keydown', handleKeydown);
             window.removeEventListener('mousemove', handleMousemove);
@@ -277,8 +277,30 @@ const GinPixel = () => {
             fitscreenBtn.removeEventListener('click', handleZoomInputChange);
             zoomPercentageInput.removeEventListener('change', handleZoomInputChange);
             zoomPercentageInput.removeEventListener('click', handleZoomInputChange);
+        }
+
+        const removeSuccess = (container) && removeElement(container);
+        if (removeSuccess) {
+            removeListener();
         } else {
-            console.error("[GinPixel]disable() can't remove undefined element(container)");
+            repeatUntilBreak({
+                reps: 10,
+                timeInterval: 0.5,
+                repeatFunction: () => {
+                    const removeSuccess = (container) && removeElement(container);
+                    if (removeSuccess) {
+                        removeListener();
+                        return true;
+                    } else {
+                        return false;
+                    }
+                },
+                callbackAfterRepeat: () => {
+                    console.info('[GinPixel]Lazy disable is completed');
+                },
+            });
+
+            console.warn("[GinPixel]disable() can't remove undefined element(container)");
         }
     };
 

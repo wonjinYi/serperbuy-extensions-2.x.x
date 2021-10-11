@@ -6,8 +6,6 @@ import { getElementByXpath } from './getElementByXpath.js';
 // callback : 어떤 엘리먼트를 획득하면 실행할 함수
 
 const waitElementLoad = ({ maxWaitTime, findInterval, elementXpath, callback }) => {
-    //let intervalId = null;
-
     let cnt = parseInt(maxWaitTime / findInterval);
     const findInterval_ms = findInterval * 1000
 

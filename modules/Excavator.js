@@ -1,5 +1,0 @@
-const Excavator = () => {
-    
-}
-
-export { Excavator };

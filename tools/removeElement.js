@@ -1,5 +1,5 @@
 const removeElement = (el) => {
-    if(el){
+    if(el && el.parentNode){
         el.parentNode.removeChild(el);
         return true;
     } else {

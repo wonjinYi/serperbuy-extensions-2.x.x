@@ -44,9 +44,11 @@ ul {
 
     border-bottom : 1px solid #ffffff80;
 }
-.module-title-text {
+.module-title h1 {
     margin-bottom : 0px;
-    margin-right : auto;   
+}
+.module-title span {
+    margin-right : auto;
 }
 
 

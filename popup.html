@@ -27,7 +27,8 @@
         <!-- User Guide Section Start -->
         <div>
             <div class="module-title">
-                <h1 class="module-title-text">크기 측정기</h1>
+                <h1>크기 측정기</h1>
+                <span>GinPixel</span>
                 <label class="switch">
                     <input type="checkbox" id="switch-GinPixel" name="GinPixel">
                     <span class="slider"></span>
@@ -47,17 +48,26 @@
         </div>
         <div>
             <div class="module-title">
-                <h1 class="module-title-text">그룹 선택기</h1>
+                <h1>그룹 숨김/보임 전환</h1>
+                <span>ForkLane</span>
                 <label class="switch">
-                    <input type="checkbox" id="switch-Excavator" name="Excavator">
+                    <input type="checkbox" id="switch-ForkLane" name="ForkLane">
                     <span class="slider"></span>
                 </label>
-                <button id="setting-open-Excavator" class="serperb-btn-theme" name="Excavator">설정</button>
+                <button id="setting-open-ForkLane" class="serperb-btn-theme" name="ForkLane">설정</button>
             </div>
             <ul>
                 <li>
-                    <span class="key">Click</span>
-                    클릭한 그룹 내의 모든 어노테이션 선택
+                    <span class="key">Shift + F</span>
+                    선택상태 진입
+                </li>
+                <li>
+                    <span class="key">Shift + F → 그룹명 Click</span>
+                    클릭한 그룹 내 모든 어노테이션의 숨김/보임 상태 전환
+                </li>
+                <li>
+                    <span class="key">Shift + F → 그룹명 이외 영역 Click</span>
+                    선택상태 취소
                 </li>
             </ul>
         </div>
@@ -76,6 +86,7 @@
     <div id="settings">
         <div class="settings-contents" name="GinPixel">
             <h2>크기 측정기 설정</h2>
+            <span>GinPixel</span>
             <div class="settings-sub-contents">
                 <h3>측정 크기 목록</h3>
                 <p>측정하실 크기를 순서대로 콤마(,)로 구분하여 입력해주세요 ( 0은 표시하지 않음을 의미합니다 )</p>
@@ -89,7 +100,15 @@
                 <input id="settings-GinPixel-input-imageSize-height" type="text" placeholder="세로길이">
             </div>
         </div>
-        <div style="padding:8px;">
+        <div class="settings-contents" name="ForkLane">
+            <h2>그룹 숨김/보임 전환</h2>
+            <span>ForkLane</span>
+            <div class="settings-sub-contents">
+                <p>설정값 없음</p>
+            </div>
+        </div>
+        
+        <div style="padding:8px;" name="general-btn">
             <button id="settings-close-withoutChange" class="settings-btn">취소</button>
             <button id="settings-close" class="settings-btn">저장하고 닫기</button>
         </div>
