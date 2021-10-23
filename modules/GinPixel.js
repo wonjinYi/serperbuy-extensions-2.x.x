@@ -96,7 +96,7 @@ const GinPixel = () => {
         if (zoomPercentageInput) {
             return ((Number((zoomPercentageInput.value).split('%')[0])) / 100.0);
         } else {
-            console.error('[GinPixel-getZoomPercentage]Can not find zoomInput');
+            console.error(`[GinPixel-getZoomPercentage]Can not find zoomInput. It returns defaultFitScreenPercentage ( ${defaultFitScreenPercentage} )`);
             return defaultFitScreenPercentage.get();
         }
     };
@@ -124,6 +124,7 @@ const GinPixel = () => {
         }
     };
 
+    // Detect User Key Input : Shift+X , Ctrl+Shift+X
     const handleKeyup = (e) => {
         if (e.key === 'Control') { isCtrl = false; }
         if (e.key === 'Shift') { isShift = false; }
@@ -151,6 +152,7 @@ const GinPixel = () => {
         }
     };
 
+    // move SizeChecker Square and Caption, with client mouse cursor
     const handleMousemove = (e) => {
         caption.style.bottom = `${documentSize.height - e.clientY}px`;
         caption.style.left = `${e.clientX}px`;
@@ -186,40 +188,38 @@ const GinPixel = () => {
     };
 
     const handleClickModeBtn = (e) => {
-        let cnt = 0;
-        const repeat = setInterval(() => {
-            const newSuiteMode = (location.pathname.split('/'))[2];
-            if (suiteMode !== newSuiteMode) {
-                clearInterval(repeat);
-
-                suiteMode = newSuiteMode;
-                cnt = 0;
-
-                zoomPercentageInput.removeEventListener('change', handleZoomInputChange);
-                zoomCombobox.removeEventListener('click', handleClickZoomCombobox);
-                modeBtn.removeEventListener('click', handleClickModeBtn);
-
-                articleArea = getElementByXpath(XPathList.articleArea);
-                articleArea.appendChild(container);
-                modeBtn = getElementByXpath(XPathList.modeBtn);
-                modeBtn.addEventListener('click', handleClickModeBtn);
-                zoomPercentageInput = getElementByXpath(XPathList.zoomPercentageInput[suiteMode]);
-                zoomPercentageInput.addEventListener('change', handleZoomInputChange);
-                zoomCombobox = getElementByXpath(XPathList.zoomCombobox[suiteMode]);
-                zoomCombobox.addEventListener('click', handleClickZoomCombobox);
-
-                handleZoomInputChange();
-            } else {
-                if (cnt >= 40) {
-                    cnt = 0;
-                    clearInterval(repeat);
-                    alert('[GinPixel]Timeout. Please refresh browser page.');
-                } else {
-                    cnt++;
+        repeatUntilBreak({
+            reps: 40,
+            timeInterval: 0.5,
+            repeatFunction: () => {
+                const newSuiteMode = (location.pathname.split('/'))[2];
+                if(suiteMode !== newSuiteMode){
+                    suiteMode = newSuiteMode;
+    
+                    zoomPercentageInput.removeEventListener('change', handleZoomInputChange);
+                    zoomCombobox.removeEventListener('click', handleClickZoomCombobox);
+                    modeBtn.removeEventListener('click', handleClickModeBtn);
+    
+                    articleArea = getElementByXpath(XPathList.articleArea);
+                    articleArea.appendChild(container);
+                    modeBtn = getElementByXpath(XPathList.modeBtn);
+                    zoomPercentageInput = getElementByXpath(XPathList.zoomPercentageInput[suiteMode]);
+                    zoomCombobox = getElementByXpath(XPathList.zoomCombobox[suiteMode]);
+    
+                    modeBtn.addEventListener('click', handleClickModeBtn);
+                    zoomPercentageInput.addEventListener('change', handleZoomInputChange);
+                    zoomCombobox.addEventListener('click', handleClickZoomCombobox);
+    
+                    handleZoomInputChange();
+    
+                    return true; // break
                 }
-            }
-        }, 500);
+            },
+            callbackAfterRepeat: () => {}, // no action after break
+        });
     };
+
+    
 
     const init = () => {
         // init dom element

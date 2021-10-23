@@ -15,11 +15,10 @@ export const main = () => {
         function (request, sender, sendResponse) {
             let farewell = null;
             const { targetModule, action } = request;
-            console.log(targetModule, action);
 
             if (targetModule === 'main') {
                 if (action === 'init') {
-                    console.log('팝업의 이닛 요청');
+                    console.log('[main] init requested from popup.js');
                     farewell = { isEnabled: isEnabled.get() };
                 }
             } else if (targetModule === 'GinPixel') {
@@ -33,22 +32,17 @@ export const main = () => {
                     farewell = targetModule;
                 } else if (action === 'settings_get') {
                     const settingsData = GinPixelManager({ task: action });
-                    console.log('불러오기완료');
                     farewell = settingsData;
                 } else if (action === 'settings_set') {
                     GinPixelManager({ task: action, data: request.data });
-                    console.log('저장완료')
                     farewell = targetModule;
                 }
             } else if (targetModule === 'ForkLane') {
-                console.log('ForkLane');
                 if (action === 'enable') {
-                    console.log('ForkLane 켜기')
                     isEnabled.set({ ...isEnabled.get(), ForkLane: true });
                     ForkLaneManager({ task: action });
                     farewell = targetModule;
                 } else if (action === 'disable') {
-                    console.log('ForkLane 끄기')
                     isEnabled.set({ ...isEnabled.get(), ForkLane: false });
                     ForkLaneManager({ task: action });
                     farewell = targetModule;
