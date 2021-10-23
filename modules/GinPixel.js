@@ -187,6 +187,7 @@ const GinPixel = () => {
         })
     };
 
+    // Reload each element When User Change Labeling mode - Review mode
     const handleClickModeBtn = (e) => {
         repeatUntilBreak({
             reps: 40,
