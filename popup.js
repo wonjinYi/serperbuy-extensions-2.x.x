@@ -1,15 +1,14 @@
-import { goraniStore } from "./libraries/goraniStore/src/goraniStore.js";
-import { store_GinPixel } from "./storeList.js";
-
 // DOM elemetns
 const $settingBtn = {
     GinPixel: document.getElementById('setting-open-GinPixel'),
     ForkLane: document.getElementById('setting-open-ForkLane'),
+    ChookjiLaw : document.getElementById('setting-open-ChookjiLaw'),
 };
 
 const $switchBtn = {
     GinPixel: document.getElementById('switch-GinPixel'),
     ForkLane: document.getElementById('switch-ForkLane'),
+    ChookjiLaw : document.getElementById('switch-ChookjiLaw'),
 };
 
 const $loading = document.getElementById('loading');
@@ -19,8 +18,8 @@ const $settings = document.getElementById('settings');
 const $settingsCloseBtn = document.getElementById('settings-close');
 const $settingsCloseWithoutChangeBtn = document.getElementById('settings-close-withoutChange');
 
-// Declare Functions
 
+// Declare Functions
 const sendMessageToContentScript = ({ data, callback }) => {
     chrome.tabs.query({ active: true, currentWindow: true },
         (tabs) => {
@@ -119,6 +118,9 @@ const handleSettingBtnClick = (e) => {
     } else if (targetModule === 'ForkLane') {
         loading(false);
         $settingsCloseBtn.onclick = settingsClose;
+    } else if (targetModule === 'ChookjiLaw') {
+        loading(false);
+        $settingsCloseBtn.onclick = settingsClose;
     }
 };
 
@@ -145,23 +147,22 @@ const main = () => {
             disableSettingBtn($settingBtn[targetModule]);
         }
 
-        
-            sendMessageToContentScript({
-                data: {
-                    targetModule,
-                    action: isEnabled ? 'enable' : 'disable',
-                }, callback: (res) => {
-                    try{
-                        if (res) {
-                            console.log(res.farewell)
-                            setTimeout(() => loading(false), 1000);
-                        }
-                    } catch (err) {
-                            alert('퀘에엑')
+        sendMessageToContentScript({
+            data: {
+                targetModule,
+                action: isEnabled ? 'enable' : 'disable',
+            }, callback: (res) => {
+                try{
+                    if (res) {
+                        console.log(res.farewell);
+                        setTimeout(() => loading(false), 1000);
                     }
-                    
+                } catch (err) {
+                    alert('퀘에엑');
                 }
-            })
+                
+            }
+        })
         
         
     }

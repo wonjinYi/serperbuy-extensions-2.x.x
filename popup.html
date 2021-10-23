@@ -16,14 +16,14 @@
         <div><img src="icon32.png" alt="serperbuy icon" style="display:block;"></div>
         <div style="display:flex; align-items:flex-end;">
             <h1 style="margin:0; padding:4px;">Serperbuy</h1>
-            <p style="color:grey"><b>ver 2.0.0 (2021/10/00)</b></p>
+            <p style="color:grey"><b>ver 2.0.0 (2021/10/12)</b></p>
         </div>
         
     </header>
 
     <main style="margin-left:24px;">
         <p style="color:grey">Serperbuy는 Superb AI Suite사용자가 만든 도구로, Superb AI, inc.와는 어떠한 관련도 없습니다.</p>
-        
+        <p style="color:grey">이 프로그램은 Superb AI Suite v1.10.0이상의 Image Project만 지원합니다.</p>
         <!-- User Guide Section Start -->
         <div>
             <div class="module-title">
@@ -71,6 +71,27 @@
                 </li>
             </ul>
         </div>
+        <div>
+            <div class="module-title">
+                <h1>Review/Label 모드 전환</h1>
+                <span>ChookjiLaw</span>
+                <label class="switch">
+                    <input type="checkbox" id="switch-ChookjiLaw" name="ChookjiLaw">
+                    <span class="slider"></span>
+                </label>
+                <button id="setting-open-ChookjiLaw" class="serperb-btn-theme" name="ChookjiLaw">설정</button>
+            </div>
+            <ul>
+                <li>
+                    <span class="key">Shift + C</span>
+                    Review Mode / Label Mode 전환
+                </li>
+                <li>
+                    <span class="key">Ctrl + Shift + C</span>
+                    새 탭에서 Review Mode / Label Mode 전환
+                </li>
+            </ul>
+        </div>
         <!-- User Guide Section End -->
     </main>
 
@@ -84,6 +105,7 @@
     <!-- Overlay Section Start -->
 
     <div id="settings">
+        <!-- Setting Contents Section Start -->
         <div class="settings-contents" name="GinPixel">
             <h2>크기 측정기 설정</h2>
             <span>GinPixel</span>
@@ -107,16 +129,26 @@
                 <p>설정값 없음</p>
             </div>
         </div>
-        
+        <div class="settings-contents" name="ChookjiLaw">
+            <h2>Review/Label 모드 전환</h2>
+            <span>ChookjiLaw</span>
+            <div class="settings-sub-contents">
+                <p>설정값 없음</p>
+            </div>
+        </div>
+        <!-- Setting Contents Section End -->
+
+        <!-- Buttons in Setting Contents Start -->
         <div style="padding:8px;" name="general-btn">
             <button id="settings-close-withoutChange" class="settings-btn">취소</button>
             <button id="settings-close" class="settings-btn">저장하고 닫기</button>
         </div>
+        <!-- Buttons in Setting Contents End -->
     </div>
 
     <div id="disable-page">
         <h2>현재 페이지에서는 사용할 수 없습니다</h2>
-        <p>Superb AI Suite의 Reivew Mode 또는 Labeling Mode가 감지되지 않았습니다</p>
+        <p>Superb AI Suite의 Reivew/Label Mode가 감지되지 않았습니다</p>
     </div>
 
     <div id="loading">

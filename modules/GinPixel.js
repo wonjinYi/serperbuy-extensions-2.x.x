@@ -30,6 +30,8 @@ const documentSize = {
 };
 
 const GinPixel = () => {
+    console.log('GinPixel is running');
+
     // declare local storage Objects
     const imageSize = new goraniStore(storeList.imageSize);
     const sizeCheckList = new goraniStore(storeList.sizeCheckList);

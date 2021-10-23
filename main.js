@@ -3,11 +3,12 @@ import { store_main, store_GinPixel } from '../storeList.js';
 
 import { GinPixelManager } from './modules/GinPixel.js';
 import { ForkLaneManager } from './modules/ForkLane.js';
+import { ChookjiLawManager } from './modules/ChookjiLaw.js';
 
 const stroeList = store_main;
 
 export const main = () => {
-    console.log('run contentscript');
+    console.log('Main is running');
     const isEnabled = new goraniStore(stroeList.isEnabled);
 
     // request routing
@@ -16,12 +17,15 @@ export const main = () => {
             let farewell = null;
             const { targetModule, action } = request;
 
+            //main =========================================
             if (targetModule === 'main') {
                 if (action === 'init') {
                     console.log('[main] init requested from popup.js');
                     farewell = { isEnabled: isEnabled.get() };
                 }
-            } else if (targetModule === 'GinPixel') {
+            } 
+            //GinPixel =========================================
+            else if (targetModule === 'GinPixel') {
                 if (action === 'enable') {
                     GinPixelManager({ task: 'enable' });
                     isEnabled.set({ ...isEnabled.get(), GinPixel: true });
@@ -37,7 +41,9 @@ export const main = () => {
                     GinPixelManager({ task: action, data: request.data });
                     farewell = targetModule;
                 }
-            } else if (targetModule === 'ForkLane') {
+            } 
+            //ForkLane =========================================
+            else if (targetModule === 'ForkLane') {
                 if (action === 'enable') {
                     isEnabled.set({ ...isEnabled.get(), ForkLane: true });
                     ForkLaneManager({ task: action });
@@ -45,6 +51,18 @@ export const main = () => {
                 } else if (action === 'disable') {
                     isEnabled.set({ ...isEnabled.get(), ForkLane: false });
                     ForkLaneManager({ task: action });
+                    farewell = targetModule;
+                }
+            } 
+            //ChookjiLaw =========================================
+            else if (targetModule === 'ChookjiLaw') {
+                if (action === 'enable') {
+                    isEnabled.set({ ...isEnabled.get(), ChookjiLaw: true });
+                    ChookjiLawManager({ task: action });
+                    farewell = targetModule;
+                } else if (action === 'disable') {
+                    isEnabled.set({ ...isEnabled.get(), ChookjiLaw: false });
+                    ChookjiLawManager({ task: action });
                     farewell = targetModule;
                 }
             }
@@ -55,6 +73,5 @@ export const main = () => {
 
     (isEnabled.get().GinPixel) ? (GinPixelManager({ task: 'enable' })) : null;
     (isEnabled.get().ForkLane) ? (ForkLaneManager({ task: 'enable' })) : null;
-
-
+    (isEnabled.get().ChookjiLaw) ? (ChookjiLawManager({ task: 'enable' })) : null;
 }
