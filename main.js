@@ -1,5 +1,5 @@
 import { goraniStore } from './libraries/goraniStore/src/goraniStore.js';
-import { store_main, store_GinPixel } from '../storeList.js';
+import { store_main } from '../storeList.js';
 
 import { GinPixelManager } from './modules/GinPixel.js';
 import { ForkLaneManager } from './modules/ForkLane.js';

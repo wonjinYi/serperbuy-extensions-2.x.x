@@ -19,7 +19,7 @@ const waitElementLoad = ({ maxWaitTime, findInterval, elementXpath, callback }) 
                 cnt--;
                 if (cnt <= 0) {
                     clearInterval(intervalId);
-                    console.error('[waitElementLoad]can not find element : ', elementXpath);
+                    console.info('[waitElementLoad]can not find element : ', elementXpath);
                 }
             }
         } catch (err) {

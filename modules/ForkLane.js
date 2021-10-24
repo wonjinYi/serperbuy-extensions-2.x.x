@@ -12,8 +12,6 @@ const groupTitleHeight = {
 }
 
 const ForkLane = () => {
-    console.log('ForkLane is running');
-
     let isCtrl = false;
     let isShift = false;
     
@@ -120,7 +118,8 @@ const ForkLane = () => {
         window.removeEventListener('click', handleClickObjectList);
         document.body.style.cursor = "default";
     }
-
+    
+    console.log('ForkLane is running');
     return { disable };
 }
 

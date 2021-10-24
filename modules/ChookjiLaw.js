@@ -2,12 +2,16 @@ import { getElementByXpath } from "../tools/getElementByXpath.js";
 import { waitElementLoad } from "../tools/waitElementLoad.js";
 
 const XpathList = {
-    modeBtn: '/html/body/div[1]/div[1]/div[3]/span/a'
+    modeBtn: '/html/body/div[1]/div[1]/div[3]/span/a',
+    zoomPercentageInput: {
+        view: '/html/body/div[1]/div[1]/div[1]/div/div[2]/div[3]/div[2]/div/input',
+        edit: '/html/body/div[1]/div[1]/div[1]/div/div[2]/div[3]/div[3]/div/input',
+    },
 };
 
 const ChookjiLaw = () => {
-    console.log('ChookjiLaw is running');
-
+    
+    
     let isCtrl = false;
     let isShift = false;
 
@@ -55,6 +59,7 @@ const ChookjiLaw = () => {
         window.removeEventListener('keydown', handleKeydown);
     }
 
+    console.log('ChookjiLaw is running');
     return { disable }
 };
 
@@ -64,6 +69,8 @@ let PublicMethod = null;
 
 const ChookjiLawManager = ({ task, data }) => {
     if (task === 'enable') {
+        const suiteMode = (location.pathname.split('/'))[2];
+        console.log(suiteMode);
         waitElementLoad({
             maxWaitTime: 10,
             findInterval: 1,

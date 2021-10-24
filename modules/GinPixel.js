@@ -29,15 +29,15 @@ const documentSize = {
     height: document.body.offsetHeight,
 };
 
-const GinPixel = () => {
-    console.log('GinPixel is running');
 
+const GinPixel = () => {
     // declare local storage Objects
     const imageSize = new goraniStore(storeList.imageSize);
     const sizeCheckList = new goraniStore(storeList.sizeCheckList);
     const defaultFitScreenPercentage = new goraniStore(storeList.defaultFitScreenPercentage);
     const userColor = new goraniStore(storeList.userColor);
 
+    
     // declare (almost) global variables
     let suiteMode = (location.pathname.split('/'))[2];
 
@@ -49,7 +49,8 @@ const GinPixel = () => {
     let isCtrl = false;
     let isShift = false;
 
-    // declare DOM elements.
+
+    // declare sizeChecker elements.
     let articleArea = getElementByXpath(XPathList.articleArea);
     let modeBtn = getElementByXpath(XPathList.modeBtn);
     let zoomPercentageInput = null; // get element when init() is called
@@ -191,9 +192,10 @@ const GinPixel = () => {
 
     // Reload each element When User Change Labeling mode - Review mode
     const handleClickModeBtn = (e) => {
+        console.log('눌렸당')
         repeatUntilBreak({
             reps: 40,
-            timeInterval: 0.5,
+            timeInterval: 0.05,
             repeatFunction: () => {
                 const newSuiteMode = (location.pathname.split('/'))[2];
                 if(suiteMode !== newSuiteMode){
@@ -222,8 +224,7 @@ const GinPixel = () => {
         });
     };
 
-    
-
+    // initialize
     const init = () => {
         // init dom element
         container.style.position = "fixed";
@@ -239,6 +240,9 @@ const GinPixel = () => {
         container.appendChild(caption);
         container.appendChild(rect);
         articleArea.appendChild(container);
+
+        console.log(suiteMode ,container);
+
 
         // init zoom
         zoomPercentageInput = getElementByXpath(XPathList.zoomPercentageInput[suiteMode]);
@@ -263,12 +267,14 @@ const GinPixel = () => {
 
     waitElementLoad({
         maxWaitTime: 5,
-        findInterval: 1,
+        findInterval: 0.05,
         elementXpath: XPathList.zoomPercentageInput[suiteMode],
         callback: init,
     });
 
-    // below are called from popup.js
+    
+
+    // below are called from popup.js - main.js
     const disable = () => {
         const removeListener = () => {
             window.removeEventListener('keyup', handleKeyup);
@@ -318,7 +324,7 @@ const GinPixel = () => {
         sizeCheckList.set(newValues.sizeCheckList);
         imageSize.set(newValues.imageSize);
     };
-
+    console.log('GinPixel is running');
     return { disable, getSettings, setSettings };
 };
 
@@ -330,9 +336,11 @@ const GinPixelManager = ({ task, data }) => {
     if (task === 'enable') {
         waitElementLoad({
             maxWaitTime: 10,
-            findInterval: 1,
+            findInterval: 0.05,
             elementXpath: XPathList.upperCanvas,
-            callback: () => { GinPixelPublicMethod = GinPixel() },
+            callback: () => { 
+                GinPixelPublicMethod = GinPixel();
+            },
         });
     } else if (task === 'disable') {
         GinPixelPublicMethod.disable();
