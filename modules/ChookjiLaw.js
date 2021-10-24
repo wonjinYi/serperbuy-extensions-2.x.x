@@ -70,7 +70,6 @@ let PublicMethod = null;
 const ChookjiLawManager = ({ task, data }) => {
     if (task === 'enable') {
         const suiteMode = (location.pathname.split('/'))[2];
-        console.log(suiteMode);
         waitElementLoad({
             maxWaitTime: 10,
             findInterval: 1,

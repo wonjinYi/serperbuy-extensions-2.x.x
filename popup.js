@@ -102,7 +102,6 @@ const handleSettingBtnClick = (e) => {
                         },
                     }, callback: (res) => {
                         if (res && res.farewell) {
-                            console.log(res.farewell);
                             const targetModuleSwitch = $switchBtn[targetModule];
                             if (targetModuleSwitch.checked) { // 해당 기능 활성화 상태이면, 비활성화해주기.
                                 targetModuleSwitch.click();
@@ -154,11 +153,10 @@ const main = () => {
             }, callback: (res) => {
                 try{
                     if (res) {
-                        console.log(res.farewell);
                         setTimeout(() => loading(false), 1000);
                     }
                 } catch (err) {
-                    alert('퀘에엑');
+                    alert('기능 활성화/비활성화가 정상적으로 처리되지 않았습니다. 새로고침 후 재시도해주세요. 문제가 지속될 경우 goranimaster17@gmail.com으로 문의바랍니다.');
                 }
                 
             }
@@ -180,7 +178,6 @@ const init = (isEnabled) => {
     const keys = Object.keys($switchBtn);
     for (let i = 0; i < keys.length; i++) {
         const key = keys[i];
-        console.log($switchBtn[key], isEnabled[key])
         if (isEnabled[key] != undefined) {
             $switchBtn[key].checked = isEnabled[key];
             if (!isEnabled[key]) { disableSettingBtn($settingBtn[key]); }

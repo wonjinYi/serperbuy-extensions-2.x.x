@@ -37,7 +37,7 @@ const GinPixel = () => {
     const defaultFitScreenPercentage = new goraniStore(storeList.defaultFitScreenPercentage);
     const userColor = new goraniStore(storeList.userColor);
 
-    
+
     // declare (almost) global variables
     let suiteMode = (location.pathname.split('/'))[2];
 
@@ -192,7 +192,6 @@ const GinPixel = () => {
 
     // Reload each element When User Change Labeling mode - Review mode
     const handleClickModeBtn = (e) => {
-        console.log('눌렸당')
         repeatUntilBreak({
             reps: 40,
             timeInterval: 0.05,
@@ -240,9 +239,6 @@ const GinPixel = () => {
         container.appendChild(caption);
         container.appendChild(rect);
         articleArea.appendChild(container);
-
-        console.log(suiteMode ,container);
-
 
         // init zoom
         zoomPercentageInput = getElementByXpath(XPathList.zoomPercentageInput[suiteMode]);
