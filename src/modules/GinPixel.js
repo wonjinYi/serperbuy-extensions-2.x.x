@@ -7,19 +7,19 @@ import { getElementByXpath } from '../tools/getElementByXpath.js';
 import { removeElement } from '../tools/removeElement.js';
 
 const XPathList = {
-    upperCanvas: '/html/body/div[1]/div[1]/div[2]/div[2]/div[1]/canvas',
+    upperCanvas: '/html/body/div[1]/div[1]/div[2]/div/div[2]/div[1]/canvas',
     articleArea: '/html/body/div[1]/div[1]/div[2]',
     modeBtn: '/html/body/div[1]/div[1]/div[3]',
     zoomPercentageInput: {
-        view: '/html/body/div[1]/div[1]/div[1]/div/div[2]/div[3]/div[2]/div/input',
-        edit: '/html/body/div[1]/div[1]/div[1]/div/div[2]/div[3]/div[3]/div/input',
+        view: '/html/body/div[1]/div[1]/div[1]/div/div[2]/div[2]/div[2]/div/input',
+        edit: '/html/body/div[1]/div[1]/div[1]/div/div[2]/div[2]/div[3]/div/input',
     },
     zoomCombobox: {
-        view: '/html/body/div[1]/div[1]/div[1]/div/div[2]/div[3]/div[2]/div',
-        edit: '/html/body/div[1]/div[1]/div[1]/div/div[2]/div[3]/div[3]/div',
+        view: '/html/body/div[1]/div[1]/div[1]/div/div[2]/div[2]/div[2]/div',
+        edit: '/html/body/div[1]/div[1]/div[1]/div/div[2]/div[2]/div[3]/div',
     },
     zoomDropdown: '/html/body/div[3]/div',
-    fitscreenBtn: '/html/body/div[1]/div[1]/div[1]/div/div[2]/div[3]/span/button',
+    fitscreenBtn: '/html/body/div[1]/div[1]/div[1]/div/div[2]/div[2]/span/button',
 };
 
 const storeList = store_GinPixel;

@@ -3,7 +3,7 @@ import { waitElementLoad } from '../tools/waitElementLoad.js';
 import useCharacterAsCursor from '../tools/useCharacterAsCursor.js';
 
 const XpathList = {
-    ObjectList: '/html/body/div[1]/div[1]/div[2]/div[1]/div[2]/div[5]/div/div',
+    ObjectList: '/html/body/div[1]/div[1]/div[2]/div/div[1]/div[2]/div[5]/div',
     articleArea: '/html/body/div[1]/div[1]/div[2]',
 }
 const groupTitleHeight = {
