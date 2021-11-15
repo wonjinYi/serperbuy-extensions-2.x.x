@@ -32,3 +32,8 @@ Serperbuy:V2는 Data Labeling Tool, Superb AI Suite에 편의기능을 추가하
 **Serperbuy** 개발자가 해당 내용 반영 후 Chrome Webstore에 등록하려면 며칠의 기간이 소요될 수 있습니다. 그 기간동안은 반드시 ``스위치``를 통해 기능을 비활성화 한 뒤 사용하시기 바랍니다.
 
 반드시 당장 급하게 사용해야 하는 경우, Github에 공개된 소스코드를 직접 다운로드하여 Chrome에 설치하는 방법을 사용할 수도 있습니다.
+
+
+## 업데이트 로그
+#### 2.0.1 (2021/11/15)
+* Suite의 업데이트(DOM구조 변경)에 따라 동작하지 않던 GinPixel, ForkLane을 정상동작하도록 수정했습니다.
