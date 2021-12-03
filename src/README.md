@@ -35,5 +35,9 @@ Serperbuy:V2는 Data Labeling Tool, Superb AI Suite에 편의기능을 추가하
 
 
 ## 업데이트 로그
+#### 2.0.2 (2021/12/04)
+* Suite의 업데이트에 따라 동작하지 않던 GinPixel을 정상동작하도록 수정했습니다.
+* ForkLane의 기본상태가 비활성화로 변경되었습니다. ChooljiLaw의 기본상태가 활성화로 변경되었습니다.
+
 #### 2.0.1 (2021/11/15)
 * Suite의 업데이트(DOM구조 변경)에 따라 동작하지 않던 GinPixel, ForkLane을 정상동작하도록 수정했습니다.

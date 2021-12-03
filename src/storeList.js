@@ -3,7 +3,8 @@ export const store_main = {
         key: "Serperbuy_main_isEnabled",
         defaultValue: {
             GinPixel: true,
-            ForkLane: true,
+            ForkLane: false,
+            ChookjiLaw: true,
         },
         type: "Object",
     }

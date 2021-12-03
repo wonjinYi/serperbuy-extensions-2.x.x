@@ -117,7 +117,7 @@ const GinPixel = () => {
             const errorBoundary = (zoomPercentage === defaultFitScreenPercentage.get())
                 ? 1
                 : Math.ceil(chkSize * approximateConst);
-            //console.log('[GinPixel]displayed size : ', resized);
+            console.log('[GinPixel]displayed size : ', resized);
 
             rect.style.width = `${resized}px`;
             rect.style.height = `${resized}px`;
@@ -238,7 +238,8 @@ const GinPixel = () => {
 
         container.appendChild(caption);
         container.appendChild(rect);
-        articleArea.appendChild(container);
+        //articleArea.appendChild(container);
+        document.body.appendChild(container);
 
         // init zoom
         zoomPercentageInput = getElementByXpath(XPathList.zoomPercentageInput[suiteMode]);
