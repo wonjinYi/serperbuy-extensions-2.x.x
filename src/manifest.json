@@ -1,7 +1,7 @@
 {
     "name": "Serperbuy:V2",
     "description": "일하기 위해 일했다",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "manifest_version": 3,
     "permissions" : [
         "storage", "tabs"
